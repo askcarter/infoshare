@@ -24,4 +24,10 @@ go run client.go
 go run client.go list
 ```
 
+## Dockerize the server
+docker build -t <your-dockerhub-username>/infoshare-server-node:1.0.0 .
+docker run -d <your-dockerhub-username>/infoshare-server-node:1.0.0 .
+docker ps <CID> | grep IPAd
+go run client.go --address <IPAddress>:50051 <commands>
+
 
