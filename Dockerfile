@@ -1,20 +1,14 @@
-# Start from a Debian image with the latest version of Go installed
-# and a workspace (GOPATH) configured at /go.
-FROM golang
+FROM node:boron
 
-# Copy the local package files to the container's workspace.
-ADD . /go/src/github.com/askcarter/infoshare
+# Create app directory
+RUN mkdir -p /usr/infoshare
+WORKDIR /usr/infoshare
 
-# Install the go gRPC package.
-RUN go get google.golang.org/grpc
+# Install app dependencies
+#COPY package.json /usr/infoshare
+ADD . /usr/infoshare
 
-# Build the outyet command inside the container.
-# (You may fetch or manage dependencies here,
-# either manually or with a tool like "godep".)
-RUN go install github.com/askcarter/infoshare
+RUN npm install grpc
 
-# Rename the binary artifact (since infoshare isn't descriptive).
-RUN mv /go/bin/infoshare /go/bin/client-go
+CMD [ "node", "server.js" ]
 
-# Run the outyet command by default when the container starts.
-ENTRYPOINT /go/bin/client-go
