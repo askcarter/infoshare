@@ -20,7 +20,7 @@ import (
 	"strconv"
 	"time"
 
-	pb "./books"
+	pb "github.com/askcarter/infoshare/books"
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
