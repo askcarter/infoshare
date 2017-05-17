@@ -60,7 +60,12 @@ Usage:
   client.go insert <id> <title> <author>    Insert a book
   client.go get <id>                        Get a book by its ID
   client.go delete <id>                     Delete a book by its ID
-  client.go watch                           Watch for inserted books`)
+  client.go watch                           Watch for inserted books
+
+Flags:
+`)
+
+	flag.PrintDefaults()
 }
 
 var commands = map[string]struct {
